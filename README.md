@@ -1,5 +1,7 @@
 # 1337emoji
 
+**v2.0: Premiere/AE panel.** Pick exactly the emoji you want from a preview grid, watch a live preview, then press **Render + Insert**. It renders once to a transparent ProRes 4444 clip and places it above your playhead, so playback doesn't lag. Install: `python3 build_cep.py --install`, restart Premiere/AE, then **Window → Extensions → 1337emoji**.
+
 Emoji transitions for **After Effects** and **Premiere Pro**. Drag-and-drop emoji floods with sliders.
 
 > Private build. Contains Apple Color Emoji artwork for personal use only. Do not publish or redistribute.
