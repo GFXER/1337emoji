@@ -1,30 +1,59 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><title>1337emoji</title><link rel="stylesheet" href="style.css"></head>
 <body>
-<header><b>1337emoji</b> <span class="ver">2.0</span> <span id="host" class="host"></span></header>
-<canvas id="preview" width="360" height="203"></canvas>
-<section class="row"><div id="dirs" class="dirs"></div></section>
-<section class="ctl">
-  <label>Count <input id="count" type="range" min="1" max="300" step="1"><output id="count_v"></output></label>
-  <label>Duration s <input id="dur" type="range" min="0.4" max="4" step="0.1"><output id="dur_v"></output></label>
-  <label>Stagger % <input id="stagger" type="range" min="0" max="90" step="1"><output id="stagger_v"></output></label>
-  <label>Size % <input id="size" type="range" min="2" max="60" step="1"><output id="size_v"></output></label>
-  <label>Variance % <input id="sizeVar" type="range" min="0" max="90" step="1"><output id="sizeVar_v"></output></label>
-  <label>Spin ° <input id="spin" type="range" min="0" max="720" step="5"><output id="spin_v"></output></label>
-  <label>Wobble <input id="wobble" type="range" min="0" max="60" step="1"><output id="wobble_v"></output></label>
-  <label>Motion blur <input id="blur" type="range" min="1" max="8" step="1"><output id="blur_v"></output></label>
-  <label>Ease <select id="ease"><option value="1">Linear</option><option value="2">Ease In-Out</option><option value="3">Expo In-Out</option><option value="4">Expo Out</option></select></label>
-  <label class="chk"><input id="pop" type="checkbox"> Pop-in</label>
-  <label class="chk"><input id="peak" type="checkbox"> Peak on playhead (centre on the cut)</label>
-  <button id="shuffle" class="small">🎲 New random layout</button>
-</section>
-<section class="pick">
-  <div class="tray-head"><span id="selcount"></span><button id="clear" class="small">Clear</button></div>
-  <div id="tray" class="tray"></div>
-  <div class="filters"><select id="cat"></select><input id="q" placeholder="search emoji…"></div>
-  <div id="grid" class="grid"></div>
-</section>
-<button id="go" class="go">RENDER + INSERT AT PLAYHEAD</button>
-<div id="status" class="status">Renders once to a transparent ProRes clip: no lag on playback.</div>
-<script src="CSInterface.js"></script><script src="data.js"></script><script src="main.js"></script>
+<div class="bg"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+
+<header>
+  <div class="logo">1337<span>emoji</span></div>
+  <div id="host" class="pill">…</div>
+</header>
+
+<main>
+  <!-- preview -->
+  <section class="glass card pv">
+    <div class="pvwrap"><canvas id="preview" width="720" height="405"></canvas>
+      <div class="pvbar">
+        <button id="play" class="ic" title="Play / pause preview">❚❚</button>
+        <button id="bgmode" class="ic" title="Preview background">◐</button>
+        <button id="shuffle" class="ic" title="New random layout">⟳</button>
+        <span id="seqinfo" class="seqinfo"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- emoji picker -->
+  <section class="glass card">
+    <div class="ch"><h2>Emoji</h2><span id="selcount" class="hint"></span><button id="clear" class="ghost">Clear</button></div>
+    <div id="tray" class="tray"></div>
+    <div class="search"><span>⌕</span><input id="q" placeholder="Search emoji"></div>
+    <div id="cats" class="chips"></div>
+    <div id="grid" class="grid"></div>
+    <div class="hint small">Click = add / remove · Shift-click = more of it · Right-click a picked chip = one less</div>
+  </section>
+
+  <!-- motion -->
+  <section class="glass card">
+    <div class="ch"><h2>Direction</h2><span id="dirname" class="hint"></span></div>
+    <div class="dirrow">
+      <div id="compass" class="compass"></div>
+      <div id="modes" class="modes"></div>
+    </div>
+  </section>
+
+  <section class="glass card">
+    <div class="ch"><h2>Motion</h2><button id="reset" class="ghost">Reset</button></div>
+    <div id="sliders"></div>
+    <div class="lbl">Ease</div>
+    <div id="ease" class="seg"></div>
+    <label class="tgl"><span>Pop-in</span><input id="pop" type="checkbox"><i></i></label>
+    <label class="tgl"><span>Centre on playhead (peak on the cut)</span><input id="peak" type="checkbox"><i></i></label>
+  </section>
+</main>
+
+<footer class="glass">
+  <button id="go" class="go"><span class="fill" id="prog"></span><span id="golbl">Render + insert at playhead</span></button>
+  <div id="status" class="status">Renders once to transparent ProRes 4444 · no playback lag</div>
+</footer>
+
+<script src="data.js"></script><script src="main.js"></script>
 </body></html>

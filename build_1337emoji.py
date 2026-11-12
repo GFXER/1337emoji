@@ -9,7 +9,7 @@ python3 build_1337emoji.py
 import json, os, re, shutil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.expanduser('~/Desktop/mcpvideokurgu/02_library/emoji/apple')
+SRC = os.environ.get('EMOJI_SRC', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'apple_emoji'))  # folder of Apple emoji PNGs
 DIST = os.path.join(HERE, 'dist', '1337emoji')
 POOL = os.path.join(DIST, '1337emoji_pool')
 VERSION = '1.0.0'

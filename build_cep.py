@@ -1,25 +1,27 @@
 """Builds + installs the 1337emoji 2.0 CEP panel (Premiere Pro + After Effects).
 Uses the pool already made by build_1337emoji.py (dist/1337emoji/1337emoji_pool + manifest.json).
-python3 build_cep.py [--install]"""
+python3 build_cep.py [--install] [--debug]"""
 import json, os, shutil, sys, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CEP = os.path.join(HERE, 'cep')
-OUT = os.path.join(HERE, 'dist', 'com.cheats1337.emoji')
-POOL = os.path.join(HERE, 'dist', '1337emoji', '1337emoji_pool')
-VERSION = '2.0.0'
+OUT = os.path.join(HERE, 'build', 'com.cheats1337.emoji')
+DIST = os.path.join(HERE, 'dist', '1337emoji') if os.path.isdir(os.path.join(HERE, 'dist', '1337emoji')) else os.path.join(HERE, 'dist')
+POOL = os.path.join(DIST, '1337emoji_pool')
+VERSION = '2.1.0'
 
 # names/cats from the panel jsx literal (single source of truth = build_1337emoji.py output)
-jsx = open(os.path.join(HERE, 'dist', '1337emoji', '1337emoji.jsx')).read()
+jsx = open(os.path.join(DIST, '1337emoji.jsx')).read()
 names = json.loads(re.search(r'var NAMES = (\[.*?\]);\n', jsx, re.S).group(1))
-man = json.load(open(os.path.join(HERE, 'dist', '1337emoji', 'manifest.json')))
+man = json.load(open(os.path.join(DIST, 'manifest.json')))
 
 if os.path.isdir(OUT):
     shutil.rmtree(OUT)
 os.makedirs(os.path.join(OUT, 'CSXS'))
 for f in ['index.html', 'main.js', 'style.css', 'host.jsx']:
     shutil.copyfile(os.path.join(CEP, f), os.path.join(OUT, f))
-shutil.copyfile(os.path.expanduser('~/Library/Application Support/Adobe/CEP/extensions/MCPBridgeCEP/CSInterface.js'), os.path.join(OUT, 'CSInterface.js'))
+if '--debug' in sys.argv:
+    open(os.path.join(OUT, '.debug'), 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<ExtensionList><Extension Id="com.cheats1337.emoji.panel"><HostList><Host Name="PPRO" Port="8099"/><Host Name="AEFT" Port="8098"/></HostList></Extension></ExtensionList>\n')
 shutil.copytree(POOL, os.path.join(OUT, 'pool'))
 open(os.path.join(OUT, 'data.js'), 'w').write('window.EMOJI_DATA = ' + json.dumps(
     {'names': names, 'cats': man['categories'], 'ranges': man['ranges']}, ensure_ascii=True) + ';\n')
