@@ -1,0 +1,86 @@
+{
+ "version": "1.0.0",
+ "count": 1945,
+ "categories": [
+  "All",
+  "Faces",
+  "Hearts",
+  "Hands",
+  "Hype",
+  "Money",
+  "Cars",
+  "Party",
+  "Sports",
+  "Food",
+  "Animals",
+  "Flags",
+  "Other"
+ ],
+ "ranges": [
+  [
+   0,
+   1944
+  ],
+  [
+   0,
+   172
+  ],
+  [
+   173,
+   215
+  ],
+  [
+   216,
+   329
+  ],
+  [
+   330,
+   358
+  ],
+  [
+   359,
+   373
+  ],
+  [
+   374,
+   435
+  ],
+  [
+   436,
+   447
+  ],
+  [
+   448,
+   491
+  ],
+  [
+   492,
+   634
+  ],
+  [
+   635,
+   766
+  ],
+  [
+   767,
+   779
+  ],
+  [
+   780,
+   1944
+  ]
+ ],
+ "directions": [
+  "Left > Right",
+  "Right > Left",
+  "Bottom > Top",
+  "Top > Bottom",
+  "Top-Left > Bottom-Right",
+  "Top-Right > Bottom-Left",
+  "Bottom-Left > Top-Right",
+  "Bottom-Right > Top-Left",
+  "Burst Out",
+  "Implode",
+  "Rain (all sides)"
+ ]
+}

@@ -1,0 +1,6 @@
+mogrt/
+*.mogrt
+_test/
+.DS_Store
+*.aep
+*.log
